@@ -1,0 +1,237 @@
+{% extends "capstone/layout.html" %} {% block style %}
+<style>
+  img {
+    width: 100%;
+    max-height: 100vh;
+    margin-top: -3.6vw;
+    object-fit: cover;
+  }
+  .image-container {
+    position: relative;
+  }
+  .image-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+  .navbar {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 100;
+  }
+  .nav-link {
+    color: white;
+    text-decoration: none;
+  }
+  .text-overlay {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    text-align: center;
+    color: #faf5e4;
+    padding: 10px;
+  }
+  .india {
+    font-size: 12rem;
+  }
+  .animated-word {
+    animation: slideDown 5s infinite;
+    position: absolute;
+    bottom: 0;
+    font-size: 6rem;
+    opacity: 0;
+  }
+
+  .animated-word:nth-child(1) {
+    margin-left: -17rem;
+  }
+  .animated-word:nth-child(2) {
+    margin-left: -12rem;
+  }
+  .animated-word:nth-child(3) {
+    margin-left: -20rem;
+  }
+  .animated-word:nth-child(4) {
+    margin-left: -19rem;
+  }
+  .animated-word:nth-child(5) {
+    margin-left: -17rem;
+  }
+  .animated-word:nth-child(6) {
+    margin-left: -18rem;
+  }
+  .animated-word:nth-child(7) {
+    margin-left: -19rem;
+  }
+  .animated-word:nth-child(8) {
+    margin-left: -23rem;
+  }
+
+  @keyframes slideDown {
+    0% {
+      transform: translateY(-240%);
+      opacity: 0;
+    }
+    20%,
+    50% {
+      transform: translateY(-120%);
+      opacity: 1;
+    }
+    70% {
+      transform: translateY(-60%);
+      opacity: 0.1;
+    }
+    100% {
+      transform: translateY(0%);
+      opacity: 0;
+    }
+  }
+  .container {
+    height: auto;
+    font-size: large;
+  }
+  .section {
+    width: 45%;
+    display: inline-block;
+  }
+  .text-center {
+    position: relative;
+    flex-basis: calc(50% - 15px);
+    text-align: center;
+    margin-top: 15vh;
+    margin-bottom: 3rem;
+  }
+
+  .search-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0;
+    padding: 0 1vw;
+  }
+
+  .text-center img {
+    max-width: auto;
+    border-radius: 1vw;
+    height: 100%;
+    filter: brightness(80%);
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  .text-center img:hover {
+    transform: scale(1.03);
+    filter: brightness(70%);
+  }
+
+  .image-overlay {
+    position: absolute;
+    color: #faf5e4;
+    font-size: 2rem;
+    font-weight: 500;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  @media screen and (min-width: 768px) {
+    .text-center {
+      width: 40%;
+    }
+    .image-container {
+      padding: 0;
+    }
+    .welcome {
+      font-size: 5rem;
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .intro {
+      font-size: xx-small;
+    }
+    .search-container {
+      margin-bottom: 0;
+    }
+    .image-overlay {
+      font-size: 1rem;
+    }
+  }
+</style>
+{% endblock %} {% block body %}
+<div class="image-container">
+  <img
+    src="https://images.pexels.com/photos/4428276/pexels-photo-4428276.jpeg"
+  />
+  <div class="text-overlay">
+    <p class="animated-word" style="display: inline">Incredible</p>
+    <p class="animated-word" style="display: none">Iconic</p>
+    <p class="animated-word" style="display: none">Inspirational</p>
+    <p class="animated-word" style="display: none">Immaculate</p>
+    <p class="animated-word" style="display: none">Impressive</p>
+    <p class="animated-word" style="display: none">Irresistible</p>
+    <p class="animated-word" style="display: none">Illustrious</p>
+    <p class="animated-word" style="display: none">Incomparable</p>
+    <h1 class="india">India</h1>
+  </div>
+</div>
+<div class="container">
+  <div style="margin-right: 8%" class="section">
+    <h1 class="welcome">Welcome aboard, fellow wanderlusts!</h1>
+  </div>
+  <div class="section">
+    <p class="intro" style="margin-top: 10vh">
+      Here at DiscoverIndia.com, Immerse yourself in the diverse tapestry of
+      India, a land where ancient traditions and modern wonders coalesce. From
+      the awe-inspiring heights of the Himalayas to the tranquil backwaters of
+      Kerala, embark on a journey that promises to captivate your senses and
+      ignite your spirit. Discover the breathtaking landscapes, rich history,
+      and vibrant cultures that make India an irresistible destination for the
+      curious traveler. Embark on a journey of discovery through our extensive
+      collection of scenic destinations spanning the entire country. Explore the
+      enchanting landscapes across all 29 states, or refine your search based on
+      the type of attraction you're eager to experience.
+    </p>
+  </div>
+
+  <div class="search-container">
+    <div class="text-center">
+      <a href="{% url 'view_states' %}"
+        ><img
+          src="https://images.unsplash.com/photo-1465919292275-c60ba49da6ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1211&q=80"
+        />
+        <div class="image-overlay">Search by States</div></a
+      >
+    </div>
+
+    <div class="text-center">
+      <a href="{% url 'view_categories' %}"
+        ><img
+          src="https://images.unsplash.com/photo-1542708993627-b6e5bbae43c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1144&q=80"
+        />
+        <div class="image-overlay">Search by Categories</div></a
+      >
+    </div>
+  </div>
+</div>
+{% endblock %} {% block script %}
+<script>
+  const animatedWords = document.querySelectorAll(".animated-word");
+  let currentIndex = 0;
+
+  function displayNextWord() {
+    animatedWords[currentIndex].style.display = "none";
+    currentIndex = (currentIndex + 1) % animatedWords.length;
+    animatedWords[currentIndex].style.display = "inline";
+  }
+
+  setInterval(displayNextWord, 3000);
+</script>
+
+{% endblock %}

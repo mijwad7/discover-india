@@ -1,0 +1,77 @@
+{% extends "capstone/layout.html" %}
+{% block style %}
+<style>
+    #places-list {
+        list-style-type: none;
+    }
+    .place-card {
+        margin: 20px 100px;
+    }
+   
+    .btn-danger {
+        display: block;
+        margin-top: 10px;
+    }
+    h2 {
+        text-align: center;
+    }
+</style>
+{% endblock %}
+{% block body %}
+<div class="container">
+    <h2>Places to Visit</h2>
+    <ul id="places-list">
+        {% for place in places_to_visit %}
+        <div class="place-card">
+            <div class="card w-10">
+                <div class="card-body">
+                    <h4 class="card-title">{{ place.name }}</h4>
+                    <p class="card-text">Location: {{ place.location }}</p>
+                    <p style="font-size: 13px;" class="card-subtitle mb-2 text-muted">Category: {{ place.category }}</p>
+                    <button class="btn btn-danger" data-place-id="{{ place.place_id }}">Remove</button>
+                    <br>
+                    <a href="{{ place.map_location }}" class="card-text">View on Google Maps</a> 
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
+{% block script %}
+<script>
+    const placesList = document.getElementById('places-list');
+
+    const markedPlaces = JSON.parse(localStorage.getItem('markedPlaces')) || [];
+
+    markedPlaces.forEach(place => {
+        const listItem = document.createElement('li');
+        listItem.innerHTML = `
+        <div style="margin: 20px 100px 20px 100px;" class="card w-10">
+            <div class="card-body">
+                <h4 class="card-title">${place.name}</h4>
+                <p class="card-text">Location: ${place.location}</p>
+                <p style="font-size: 13px;" class="card-subtitle mb-2 text-muted">Category: ${place.category}</p>
+                <button style="display:block;" class="btn btn-danger" data-place-id="${place.place_id}">Remove</button>
+                <br>
+                <a href="${place.map_location}" class="card-text">View on Google Maps</a> 
+            </div>
+        </div>
+        `;
+        
+        const removeButton = listItem.querySelector('button');
+        removeButton.addEventListener('click', () => {
+            removeMarkedPlace(place.place_id);
+            listItem.remove();
+        });
+
+        placesList.appendChild(listItem);
+    });
+
+    function removeMarkedPlace(placeId) {
+        const updatedMarkedPlaces = markedPlaces.filter(place => place.place_id !== placeId);
+        localStorage.setItem('markedPlaces', JSON.stringify(updatedMarkedPlaces));
+    }
+</script>
+{% endblock %}
+

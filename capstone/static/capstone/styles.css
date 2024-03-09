@@ -1,0 +1,23 @@
+h2 {
+    padding-left: 20px;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #faf5e4;
+}
+.body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    color: #004445;
+    margin: 0;
+    text-align: justify;
+}
+.photo {
+    text-align: center;
+    max-width: 600px;  
+    height: auto;      
+}
+.photo-list {
+    display: inline;
+}

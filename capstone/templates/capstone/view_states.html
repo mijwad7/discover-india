@@ -1,0 +1,10 @@
+{% extends "capstone/layout.html" %}
+
+{% block body %}
+    <h2 style="text-align: center;">States</h2>
+    <ul style="padding-right: 10%; padding-left:10%; margin-bottom: 3vh;" class="list-group">
+        {% for state in states %}
+            <li style="background-color: F8F6F4; color:#272343"  class="list-group-item "><a href="{% url 'states_categories' state=state.0 %}">{{ state.1 }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
